@@ -4,3 +4,4 @@ resources:
   - harbor-creds.yaml
   - helmrepository.yaml
   - helmrelease.yaml
+  - ingress.yaml
