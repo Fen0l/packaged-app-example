@@ -1,0 +1,11 @@
+apiVersion: v2
+name: podinfo
+description: A Helm chart for Podinfo — demo microservice for NKP project GitOps
+type: application
+version: 1.0.0
+appVersion: "6.7.1"
+keywords:
+  - podinfo
+  - demo
+  - gitops
+home: https://github.com/stefanprodan/podinfo

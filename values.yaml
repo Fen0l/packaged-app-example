@@ -1,0 +1,41 @@
+# Podinfo — default values for air-gapped NKP deployment
+# Override via ConfigMap in HelmRelease valuesFrom or inline values block.
+
+replicaCount: 2
+
+image:
+  repository: ghcr.io/stefanprodan/podinfo
+  tag: "6.7.1"
+  pullPolicy: IfNotPresent
+
+# Podinfo UI configuration
+ui:
+  color: "#34577c"
+  message: "Hello from NKP project my-app"
+
+service:
+  type: ClusterIP
+  port: 9898
+  grpcPort: 9999
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 128Mi
+
+# HorizontalPodAutoscaler (requires metrics-server)
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 80
+
+# Ingress (Traefik on NKP)
+ingress:
+  enabled: false
+  className: traefik
+  host: podinfo.example.com
+  annotations: {}
