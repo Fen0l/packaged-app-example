@@ -4,7 +4,7 @@ metadata:
   name: podinfo-lb
 spec:
   type: LoadBalancer
-  externalTrafficPolicy: Local
+  externalTrafficPolicy: Cluster
   selector:
     app.kubernetes.io/name: podinfo
   ports:
