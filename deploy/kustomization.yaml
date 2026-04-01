@@ -6,3 +6,4 @@ resources:
   - helmrelease.yaml
   - ingress.yaml
   - service-lb.yaml
+  - networkpolicy.yaml
