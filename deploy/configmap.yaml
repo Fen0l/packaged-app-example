@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: podinfo
-  labels:
-    app.kubernetes.io/name: podinfo
-data:
-  UI_COLOR: "#34577c"
-  UI_MESSAGE: "Hello from NKP project my-app"

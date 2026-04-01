@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+spec:
+  chart:
+    spec:
+      chart: podinfo
+      sourceRef:
+        kind: HelmRepository
+        name: harbor-nkp
+      version: "1.0.0"
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  releaseName: podinfo
+  values:
+    replicaCount: 2
+    image:
+      repository: ghcr.io/stefanprodan/podinfo
+      tag: "6.7.1"
+    ui:
+      color: "#2196F3"
+      message: "NKP Demo — project-level GitOps deployment"
+    service:
+      type: ClusterIP
+      port: 9898
+      grpcPort: 9999
+    resources:
+      requests:
+        cpu: 100m
+        memory: 64Mi
+      limits:
+        cpu: 500m
+        memory: 128Mi

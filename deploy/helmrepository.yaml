@@ -1,0 +1,11 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: harbor-nkp
+spec:
+  type: oci
+  interval: 10m
+  url: oci://harbor.itcs.local/nkp
+  insecure: true
+  secretRef:
+    name: harbor-oci-creds
