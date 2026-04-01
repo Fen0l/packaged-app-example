@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-traefik-ingress
+  name: allow-podinfo-ingress
 spec:
   podSelector:
     matchLabels:
@@ -9,11 +9,24 @@ spec:
   policyTypes:
     - Ingress
   ingress:
+    # Traefik (workspace namespace)
     - from:
         - namespaceSelector:
             matchLabels:
               kubernetes.io/metadata.name: demo-2nc68
+      ports:
+        - port: 9898
+          protocol: TCP
+    # Same namespace
+    - from:
         - podSelector: {}
+      ports:
+        - port: 9898
+          protocol: TCP
+    # External traffic (LoadBalancer)
+    - from:
+        - ipBlock:
+            cidr: 0.0.0.0/0
       ports:
         - port: 9898
           protocol: TCP
